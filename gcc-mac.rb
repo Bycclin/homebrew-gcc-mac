@@ -88,7 +88,7 @@ class GccMac < Formula
     #  - Ada and D, which require a pre-existing GCC to bootstrap
     #  - Go, currently not supported on macOS
     #  - BRIG
-    languages = %w[c c++ objc obj-c++ fortran m2 rust]
+    languages = %w[c c++ objc obj-c++ fortran m2]
 
     pkgversion = "abcd GCC #{pkg_version} #{build.used_options*" "}".strip
 
