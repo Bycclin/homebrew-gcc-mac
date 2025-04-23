@@ -6,8 +6,8 @@ class GccMac < Formula
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   stable do
-    url "https://ftp.gnu.org/gnu/gcc/gcc-16.0.0/gcc-16.0.0.tar.xz"
-    mirror "https://ftpmirror.gnu.org/gcc/gcc-14.2.0/gcc-14.2.0.tar.xz"
+    url "https://github.com/iains/gcc-darwin-arm64/archive/refs/heads/master-wip-apple-si.tar.gz"
+    mirror "https://github.com/gcc-mirror/gcc/archive/refs/heads/master.tar.gz"
     sha256 "a7b39bc69cbf9e25826c5a60ab26477001f7c08d85cec04bc0e29cabed6f3cc9"
 
     # Branch from the Darwin maintainer of GCC, with a few generic fixes and
