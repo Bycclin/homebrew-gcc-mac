@@ -27,7 +27,7 @@ class GccMac < Formula
      #   sha256 "4077af416eaf40a968e4b9d382aeb6470c2b79f09a52da2dd6aa91ace7af5c87"
     #  end
    # end
- # end
+end
 
   livecheck do
     url :stable
