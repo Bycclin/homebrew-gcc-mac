@@ -9,7 +9,7 @@ class GccMac < Formula
     url "https://github.com/iains/gcc-darwin-arm64/archive/refs/heads/master-wip-apple-si.tar.gz"
     mirror "https://github.com/gcc-mirror/gcc/archive/refs/heads/master.tar.gz"
     version "16.0.0|_|15.0.0"
-    sha256 "a7b39bc69cbf9e25826c5a60ab26477001f7c08d85cec04bc0e29cabed6f3cc9"
+    sha256 "67dd28b4be76e3e216657751307951fa113602d489c58cb22b59170c62fe08cf"
 
     # Branch from the Darwin maintainer of GCC, with a few generic fixes and
     # Apple Silicon support, located at https://github.com/iains/gcc-14-branch
