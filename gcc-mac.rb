@@ -8,6 +8,7 @@ class GccMac < Formula
   stable do
     url "https://github.com/iains/gcc-darwin-arm64/archive/refs/heads/master-wip-apple-si.tar.gz"
     mirror "https://github.com/gcc-mirror/gcc/archive/refs/heads/master.tar.gz"
+    version "16.0.0 might 15.0.0"
     sha256 "a7b39bc69cbf9e25826c5a60ab26477001f7c08d85cec04bc0e29cabed6f3cc9"
 
     # Branch from the Darwin maintainer of GCC, with a few generic fixes and
