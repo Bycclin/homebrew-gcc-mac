@@ -50,11 +50,11 @@ class GccMac < Formula
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
 
-  depends_on "gmp"
-  depends_on "isl"
-  depends_on "libmpc"
-  depends_on "mpfr"
-  depends_on "zstd"
+  #depends_on "gmp"
+  #depends_on "isl"
+  #depends_on "libmpc"
+  #depends_on "mpfr"
+  #depends_on "zstd"
 
   uses_from_macos "flex" => :build
   uses_from_macos "m4" => :build
@@ -101,11 +101,6 @@ class GccMac < Formula
       --with-gcc-major-version-only
       --enable-languages=#{languages.join(",")}
       --program-suffix=-#{version_suffix}
-      --with-gmp=#{Formula["gmp"].opt_prefix}
-      --with-mpfr=#{Formula["mpfr"].opt_prefix}
-      --with-mpc=#{Formula["libmpc"].opt_prefix}
-      --with-isl=#{Formula["isl"].opt_prefix}
-      --with-zstd=#{Formula["zstd"].opt_prefix}
       --with-pkgversion=#{pkgversion}
       --with-bugurl=#{tap.issues_url}
       --with-system-zlib
