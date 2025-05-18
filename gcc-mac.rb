@@ -8,7 +8,7 @@ class GccMac < Formula
   stable do
     url "https://github.com/freebsd/pkg/archive/refs/tags/2.1.3.tar.gz"
     mirror "https://github.com/gcc-mirror/gcc/archive/refs/heads/master.tar.gz"
-    sha256 "67dd28b4be76e3e216657751307951fa113602d489c58cb22b59170c62fe08cf"
+    sha256 "823b573d0d43ad6dbdc553236ca1f7717bd8f57f4289dac96121423575757e07"
 
     # Branch from the Darwin maintainer of GCC, with a few generic fixes and
     # Apple Silicon support, located at https://github.com/iains/gcc-14-branch
