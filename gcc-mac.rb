@@ -48,13 +48,8 @@ class GccMac < Formula
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   pour_bottle? only_if: :clt_installed
-
-  depends_on "gmp"
-  depends_on "isl"
-  depends_on "libmpc"
-  depends_on "mpfr"
-  depends_on "zstd"
-
+  depends_on "openssl"
+  
   uses_from_macos "flex" => :build
   uses_from_macos "m4" => :build
   uses_from_macos "zlib"
