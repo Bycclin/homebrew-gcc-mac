@@ -6,9 +6,8 @@ class GccMac < Formula
   head "https://gcc.gnu.org/git/gcc.git", branch: "master"
 
   stable do
-    url "https://github.com/iains/gcc-darwin-arm64/archive/refs/heads/master-wip-apple-si.tar.gz"
+    url "https://github.com/freebsd/pkg/archive/refs/tags/2.1.3.tar.gz"
     mirror "https://github.com/gcc-mirror/gcc/archive/refs/heads/master.tar.gz"
-    version "16.0.0|_|15.0.0"
     sha256 "67dd28b4be76e3e216657751307951fa113602d489c58cb22b59170c62fe08cf"
 
     # Branch from the Darwin maintainer of GCC, with a few generic fixes and
@@ -60,11 +59,6 @@ class GccMac < Formula
   uses_from_macos "m4" => :build
   uses_from_macos "zlib"
 
-  on_macos do
-    # macOS make is too old, has intermittent parallel build issue
-    depends_on "make" => :build
-  end
-
   on_linux do
     depends_on "binutils"
   end
@@ -88,63 +82,10 @@ class GccMac < Formula
     #  - Ada and D, which require a pre-existing GCC to bootstrap
     #  - Go, currently not supported on macOS
     #  - BRIG
-    languages = %w[c c++ objc obj-c++ fortran m2]
-
-    pkgversion = "abcd GCC #{pkg_version} #{build.used_options*" "}".strip
-
-    # Use `lib/gcc/current` to provide a path that doesn't change with GCC's version.
-    args = %W[
-      --prefix=#{opt_prefix}
-      --libdir=#{opt_lib}/gcc/current
-      --disable-nls
-      --enable-checking=release
-      --with-gcc-major-version-only
-      --enable-languages=#{languages.join(",")}
-      --program-suffix=-#{version_suffix}
-      --with-gmp=#{Formula["gmp"].opt_prefix}
-      --with-mpfr=#{Formula["mpfr"].opt_prefix}
-      --with-mpc=#{Formula["libmpc"].opt_prefix}
-      --with-isl=#{Formula["isl"].opt_prefix}
-      --with-zstd=#{Formula["zstd"].opt_prefix}
-      --with-pkgversion=#{pkgversion}
-      --with-bugurl=#{tap.issues_url}
-      --with-system-zlib
-    ]
-
-
-    if OS.mac?
-      cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-      args << "--build=#{cpu}-apple-darwin#{OS.kernel_version.major}"
-
-      # System headers may not be in /usr/include
-      sdk = MacOS.sdk_path_if_needed
-      args << "--with-sysroot=#{sdk}" if sdk
-
-      make_args = []
-    else
-      # Fix cc1: error while loading shared libraries: libisl.so.15
-      args << "--with-boot-ldflags=-static-libstdc++ -static-libgcc #{ENV.ldflags}"
-
-      # Fix Linux error: gnu/stubs-32.h: No such file or directory.
-      args << "--disable-multilib"
-
-      # Enable to PIE by default to match what the host GCC uses
-      args << "--enable-default-pie"
-
-      # Change the default directory name for 64-bit libraries to `lib`
-      # https://stackoverflow.com/a/54038769
-      inreplace "gcc/config/i386/t-linux64", "m64=../lib64", "m64="
-      inreplace "gcc/config/aarch64/t-aarch64-linux", "lp64=../lib64", "lp64="
-
-      make_args = %W[
-        BOOT_CFLAGS=-I#{Formula["zlib"].opt_include}
-        BOOT_LDFLAGS=-L#{Formula["zlib"].opt_lib}
-      ]
-    end
 
     mkdir "build" do
-      system "../configure", *args
-      system "gmake", *make_args
+      system "../configure", "--prefix
+      system "make"
 
       # Do not strip the binaries on macOS, it makes them unsuitable
       # for loading plugins
