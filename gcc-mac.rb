@@ -62,7 +62,7 @@ class GccMac < Formula
     #  - BRIG
 
     mkdir "build" do
-      system "../configure", "--prefix=#{opt_lib}/pkg/current"
+      system "../configure", "--prefix=/opt/homebrew/Cellar/pkg/#{version}"
       system "make"
 
       # Do not strip the binaries on macOS, it makes them unsuitable
