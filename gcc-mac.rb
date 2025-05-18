@@ -97,4 +97,5 @@ class GccMac < Formula
       system "gmake", install_target, "DESTDIR=#{Pathname.pwd}/../instdir"
       mv Dir[Pathname.pwd/"../instdir/#{opt_prefix}/*"], prefix
     end
+  end
 end
